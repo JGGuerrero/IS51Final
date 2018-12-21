@@ -59,6 +59,7 @@ password: "<First Name>123"
 
 eg. lucas, lucas123
 ```
+w
 
 Upon successful login, navigate to the cart page.
 
