@@ -88,32 +88,22 @@ saveBike() {
 
 }
 
-finalize (){
-  this.calculate();
-  const data = this.calculate();
-  this.router.navigate(['home', data]);
+finalize(){
+  this.calculateTotal();
+  const data = this.calculateTotal();
+  this.router.navigate(['invoice', data]);
 }
 
 
-calculate() {
-  let owed = 0;
-  for(let i=0; i < this.bikes.length; i++) {
-    // console.log('i: ', i, "this.contacts[i]", this.contacts[i]);
-    owed += this.bikes[i].owed;
-    console.log('owed---->', owed);
-  }
-  return {
-    numberOfBikes: this.bikes.length, 
-    subTotal: owed,
-    taxAmount: owed * .15,
-    total: owed + (owed * .15) 
-  };
+calculateTotal(){
+  const total = this.bikes.reduce ((acc: number, bike: ICart)=>{
+    acc+= bike.quantity* bike.price;
+    return acc;
+    
+  }, 0);
+
+  const taxAmount = total *.15;
+  const subTotal = total - taxAmount;
+
 }
-
-
-
-   
-
-
-
 }
